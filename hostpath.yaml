@@ -1,0 +1,15 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: hostvol-pod
+spec:
+  containers:
+  - image: nginx
+    name: demopod2
+    volumeMounts:
+    - mountPath: /test-vol
+      name: local-volume
+  volumes:
+  - name: local-volume
+    hostPath:
+      path: /data
