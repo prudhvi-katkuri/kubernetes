@@ -1,0 +1,29 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: demodeployment
+spec:
+  replicas: 3
+  strategy: 
+    type: RollingUpdate
+    rollingUpdate:
+      maxSurge: 50%
+      maxUnavailable: 50%
+  selector:
+    matchLabels:
+      app: demodeployment
+  template:
+    metadata:
+      labels:
+        app: demodeployment
+    spec:
+      containers:
+      - name: demodeployment
+        image: nginx
+        imagePullPolicy: IfNotPresent 
+        resources:
+          limits:
+            memory: "128Mi"
+            cpu: "500m"
+        ports:
+        - containerPort: 80

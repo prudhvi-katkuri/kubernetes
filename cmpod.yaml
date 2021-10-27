@@ -1,0 +1,36 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: demo
+  labels:
+    name: demo
+spec:
+  containers:
+  - name: demo
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+    env:
+      - name: myapp
+        valuefrom:
+          configMapkeyRef:
+            name: democm
+            key: myapp
+      - name: name
+        valueFrom:
+          configMapkeyRef:
+            name: democm
+            key: name
+    volumeMounts:
+      - name: config 
+        mountPath: /tmp/app.properties        
+  volumes:
+  - name: config
+    configMap:
+      name: democm
+          
+

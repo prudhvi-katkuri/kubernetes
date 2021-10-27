@@ -1,0 +1,12 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: democm
+data:
+  myapp: demo
+  name: configmap
+# file configmap  
+  app.properties: |
+    my app demo config 
+    my demo app.properties
+  

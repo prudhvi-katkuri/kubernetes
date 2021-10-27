@@ -1,0 +1,12 @@
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: demodeployment
+spec:
+  maxReplicas: 4
+  minReplicas: 1
+  scaleTargetRef:
+    apiVersion: extensions/v1
+    kind: Deployment
+    name: demodeployment
+  targetCPUUtilizationPercentage: 50

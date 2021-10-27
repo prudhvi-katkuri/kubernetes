@@ -1,0 +1,13 @@
+apiVersion: rbac.authorization.k8s.io/v1
+kind: Role
+metadata:
+  namespace: demons
+  name: demo-role2
+rules:
+- apiGroups: 
+  - "*" 
+  resources: 
+  - pods
+  resourceNames:
+    - "demopod"
+  verbs: ["get", "list", "watch", "create", "update", "patch", "delete"]

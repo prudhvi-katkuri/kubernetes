@@ -1,0 +1,23 @@
+apiVersion: v1
+kind: Pod
+metadata:
+  name: myapp
+  labels:
+    name: myapp
+spec:
+  containers:
+  - name: myapp
+    image: nginx
+    resources:
+      limits:
+        memory: "128Mi"
+        cpu: "500m"
+    ports:
+      - containerPort: 80
+  #taint the node with key=value:effect
+  #kubectltaint nade <node-name> key=vale:effect( NoSchedule, PreferNoSchedule, NoExecute )    
+  tolerations:
+    - key: "env"
+      operator: "Equal"
+      value: "dev"
+      effect: "NoSchedule"
